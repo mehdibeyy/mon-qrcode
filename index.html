@@ -309,12 +309,12 @@ function openWifi(){
 openModal("wifiModal");
 }
 
-function openMenuFr(){
-window.location.href=CONFIG.menuFr;
+function openMenuFr() {
+  window.open(new URL(CONFIG.menuFr, window.location.href).href, "_blank");
 }
 
-function openMenuEn(){
-window.location.href=CONFIG.menuEn;
+function openMenuEn() {
+  window.open(new URL(CONFIG.menuEn, window.location.href).href, "_blank");
 }
 
 function copyPassword(){
