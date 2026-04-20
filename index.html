@@ -1,479 +1,328 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cafe Le Plaisance</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    /* ─── Variables ─── */
-    :root {
-      --gold:    #C9A84C;
-      --gold-lt: #E8D49A;
-      --cream:   #FAF7F2;
-      --dark:    #1C1A17;
-      --mid:     #5A5550;
-      --card-bg: #FFFFFF;
-      --radius:  18px;
-      --shadow:  0 8px 40px rgba(0,0,0,0.10);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Café le Plaisance</title>
 
-    /* ─── Reset ─── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
-    /* ─── Body ─── */
-    body {
-      min-height: 100dvh;
-      background: var(--cream);
-      background-image:
-        radial-gradient(ellipse at 20% 0%, rgba(201,168,76,0.13) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 100%, rgba(201,168,76,0.09) 0%, transparent 55%);
-      font-family: 'DM Sans', sans-serif;
-      color: var(--dark);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1.25rem;
-      position: relative;
-      overflow-x: hidden;
-    }
+<style>
 
-    /* ─── Decorative top border ─── */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
+:root {
+--gold:#C9A84C;
+--gold-lt:#E8D49A;
+--cream:#FAF7F2;
+--dark:#1C1A17;
+--mid:#5A5550;
+--card-bg:#FFFFFF;
+--radius:18px;
+--shadow:0 8px 40px rgba(0,0,0,0.10);
+}
 
-    /* ─── Container ─── */
-    .container {
-      width: 100%;
-      max-width: 420px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-      animation: fadeUp .6s ease both;
-    }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
-    /* ─── Header ─── */
-    header {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .6rem;
-    }
+body{
+min-height:100dvh;
+background:var(--cream);
+font-family:'DM Sans',sans-serif;
+color:var(--dark);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:2rem 1.25rem;
+}
 
-    .ornament {
-      width: 48px; height: 2px;
-      background: var(--gold);
-      border-radius: 2px;
-    }
+.container{
+width:100%;
+max-width:420px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:2rem;
+}
 
-    .ornament-group {
-      display: flex;
-      align-items: center;
-      gap: .7rem;
-    }
+header{
+text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:.6rem;
+}
 
-    .ornament-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-    }
+h1{
+font-family:'Playfair Display',serif;
+font-size:clamp(2rem,8vw,2.6rem);
+font-weight:700;
+}
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 8vw, 2.6rem);
-      font-weight: 700;
-      color: var(--dark);
-      letter-spacing: .01em;
-      line-height: 1.15;
-    }
+.subtitle{
+font-size:.9rem;
+color:var(--mid);
+font-weight:300;
+}
 
-    .subtitle {
-      font-size: .9rem;
-      color: var(--mid);
-      font-weight: 300;
-      letter-spacing: .04em;
-    }
+.btn-group{
+width:100%;
+display:flex;
+flex-direction:column;
+gap:1rem;
+}
 
-    /* ─── Buttons ─── */
-    .btn-group {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+.btn{
+width:100%;
+padding:1.15rem 1.5rem;
+border:none;
+border-radius:var(--radius);
+font-family:'DM Sans',sans-serif;
+font-size:1rem;
+font-weight:500;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:.9rem;
+}
 
-    .btn {
-      width: 100%;
-      padding: 1.15rem 1.5rem;
-      border: none;
-      border-radius: var(--radius);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: .9rem;
-      transition: transform .18s ease, box-shadow .18s ease, background .18s;
-      position: relative;
-      overflow: hidden;
-      text-align: left;
-    }
+.btn-icon{
+width:42px;
+height:42px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:1.25rem;
+}
 
-    .btn::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0);
-      transition: background .18s;
-    }
-    .btn:active::after { background: rgba(255,255,255,.12); }
+.btn-text{
+display:flex;
+flex-direction:column;
+gap:.15rem;
+}
 
-    .btn:active { transform: scale(.97); }
+.btn-label{font-size:1rem;font-weight:500;}
+.btn-desc{font-size:.75rem;font-weight:300;opacity:.8;}
 
-    .btn-icon {
-      width: 42px; height: 42px;
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.25rem;
-    }
+.btn-wifi{
+background:linear-gradient(135deg,#1C1A17 0%,#2E2A23 100%);
+color:#fff;
+}
 
-    .btn-text { display: flex; flex-direction: column; gap: .15rem; }
-    .btn-label { font-size: 1rem; font-weight: 500; }
-    .btn-desc  { font-size: .75rem; font-weight: 300; opacity: .8; }
+.btn-menu{
+background:linear-gradient(135deg,var(--gold) 0%,#B8922A 100%);
+color:#fff;
+}
 
-    /* Bouton WiFi */
-    .btn-wifi {
-      background: linear-gradient(135deg, #1C1A17 0%, #2E2A23 100%);
-      color: #fff;
-      box-shadow: 0 6px 24px rgba(28,26,23,.25);
-    }
-    .btn-wifi:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(28,26,23,.30); }
-    .btn-wifi .btn-icon { background: rgba(201,168,76,.18); color: var(--gold); }
+.modal-overlay{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(28,26,23,.5);
+align-items:flex-end;
+justify-content:center;
+}
 
-    /* Bouton Menu */
-    .btn-menu {
-      background: linear-gradient(135deg, var(--gold) 0%, #B8922A 100%);
-      color: #fff;
-      box-shadow: 0 6px 24px rgba(201,168,76,.35);
-    }
-    .btn-menu:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(201,168,76,.45); }
-    .btn-menu .btn-icon { background: rgba(255,255,255,.2); color: #fff; }
+.modal-overlay.open{display:flex;}
 
-    /* ─── Chevron ─── */
-    .btn-arrow {
-      margin-left: auto;
-      opacity: .5;
-      font-size: 1rem;
-    }
+.modal{
+width:100%;
+max-width:420px;
+background:var(--card-bg);
+border-radius:var(--radius) var(--radius) 0 0;
+padding:2rem 1.5rem;
+display:flex;
+flex-direction:column;
+gap:1.4rem;
+}
 
-    /* ─── Modal overlay ─── */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(28,26,23,.5);
-      backdrop-filter: blur(4px);
-      z-index: 100;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 0 0 env(safe-area-inset-bottom, 0);
-    }
-    .modal-overlay.open { display: flex; animation: overlayIn .25s ease both; }
+.modal-title{
+font-family:'Playfair Display',serif;
+font-size:1.4rem;
+}
 
-    /* ─── Modal card ─── */
-    .modal {
-      width: 100%;
-      max-width: 420px;
-      background: var(--card-bg);
-      border-radius: var(--radius) var(--radius) 0 0;
-      padding: 2rem 1.5rem calc(2rem + env(safe-area-inset-bottom, 1rem));
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-      animation: slideUp .3s cubic-bezier(.32,0,.67,0) both;
-      position: relative;
-    }
+.wifi-info{
+background:var(--cream);
+border-radius:14px;
+padding:1.2rem;
+display:flex;
+flex-direction:column;
+gap:1rem;
+}
 
-    .modal-handle {
-      width: 40px; height: 4px;
-      border-radius: 2px;
-      background: #E0DEDA;
-      margin: 0 auto -.4rem;
-    }
+.wifi-row{
+display:flex;
+flex-direction:column;
+gap:.25rem;
+}
 
-    .modal-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--dark);
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-    }
+.wifi-row-label{
+font-size:.72rem;
+font-weight:500;
+letter-spacing:.08em;
+color:var(--mid);
+text-transform:uppercase;
+}
 
-    /* ─── Wifi card ─── */
-    .wifi-info {
-      background: var(--cream);
-      border-radius: 14px;
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+.wifi-row-value{
+font-size:1.1rem;
+font-weight:500;
+}
 
-    .wifi-row {
-      display: flex;
-      flex-direction: column;
-      gap: .25rem;
-    }
+.btn-copy{
+width:100%;
+padding:1rem;
+border:none;
+border-radius:14px;
+background:var(--dark);
+color:#fff;
+cursor:pointer;
+}
 
-    .wifi-row-label {
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      color: var(--mid);
-      text-transform: uppercase;
-    }
+.btn-lang{
+width:100%;
+padding:1rem;
+border:none;
+border-radius:14px;
+font-size:1rem;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:.7rem;
+}
 
-    .wifi-row-value {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--dark);
-      letter-spacing: .02em;
-    }
+.lang-fr{
+background:linear-gradient(135deg,var(--gold) 0%,#B8922A 100%);
+color:white;
+}
 
-    /* Séparateur */
-    .wifi-divider {
-      height: 1px;
-      background: #E8E4DC;
-    }
+.lang-en{
+background:linear-gradient(135deg,#1C1A17 0%,#2E2A23 100%);
+color:white;
+}
 
-    /* ─── Bouton copier ─── */
-    .btn-copy {
-      width: 100%;
-      padding: 1rem;
-      border: none;
-      border-radius: 14px;
-      background: var(--dark);
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .95rem;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .6rem;
-      transition: background .2s, transform .15s;
-    }
-    .btn-copy:hover  { background: #2E2A23; }
-    .btn-copy:active { transform: scale(.97); }
-    .btn-copy.copied { background: #2D6A4F; }
-
-    /* ─── Close btn ─── */
-    .btn-close {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      background: var(--cream);
-      border: none;
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      font-size: 1rem;
-      color: var(--mid);
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .15s;
-    }
-    .btn-close:hover { background: #EDEBE5; }
-
-    /* ─── Footer ─── */
-    footer {
-      font-size: .75rem;
-      color: #B0ABA4;
-      text-align: center;
-      letter-spacing: .03em;
-    }
-
-    /* ─── Animations ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes overlayIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes slideUp {
-      from { transform: translateY(100%); }
-      to   { transform: translateY(0); }
-    }
-  </style>
+</style>
 </head>
+
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <!-- ── En-tête ── -->
-    <header>
-      <div class="ornament-group">
-        <div class="ornament"></div>
-        <div class="ornament-dot"></div>
-        <div class="ornament"></div>
-      </div>
-      <h1>Café Le Plaisance</h1>
-      <p class="subtitle">Comment puis-je vous aider ?</p>
-    </header>
+<header>
+<h1>Bienvenue</h1>
+<p class="subtitle">Comment puis-je vous aider ?</p>
+</header>
 
-    <!-- ── Boutons principaux ── -->
-    <div class="btn-group">
+<div class="btn-group">
 
-      <button class="btn btn-wifi" onclick="openWifi()">
-        <div class="btn-icon">📶</div>
-        <div class="btn-text">
-          <span class="btn-label">Voir le mot de passe WiFi</span>
-          <span class="btn-desc">Connexion rapide et gratuite</span>
-        </div>
-        <span class="btn-arrow">›</span>
-      </button>
+<button class="btn btn-wifi" onclick="openWifi()">
+<div class="btn-icon">📶</div>
+<div class="btn-text">
+<span class="btn-label">Voir le mot de passe WiFi</span>
+<span class="btn-desc">Connexion rapide et gratuite</span>
+</div>
+</button>
 
-      <button class="btn btn-menu" onclick="openMenu()">
-        <div class="btn-icon">🍽</div>
-        <div class="btn-text">
-          <span class="btn-label">Consulter le menu</span>
-          <span class="btn-desc">Voir nos plats et boissons</span>
-        </div>
-        <span class="btn-arrow">›</span>
-      </button>
+<button class="btn btn-menu" onclick="openModal('menuModal')">
+<div class="btn-icon">🍽</div>
+<div class="btn-text">
+<span class="btn-label">Consulter le menu</span>
+<span class="btn-desc">Voir nos plats et boissons</span>
+</div>
+</button>
 
-    </div>
+</div>
 
-    <footer>Scannez ce QR code pour y revenir</footer>
-  </div>
+</div>
 
+<!-- WIFI -->
 
-  <!-- ════════════════════════════════════
-       Modal WiFi
-  ════════════════════════════════════ -->
-  <div class="modal-overlay" id="wifiModal" onclick="closeOnOverlay(event, 'wifiModal')">
-    <div class="modal">
-      <div class="modal-handle"></div>
-      <button class="btn-close" onclick="closeModal('wifiModal')">✕</button>
+<div class="modal-overlay" id="wifiModal" onclick="closeOnOverlay(event,'wifiModal')">
+<div class="modal">
 
-      <div class="modal-title">📶 Connexion WiFi</div>
+<div class="modal-title">📶 Connexion WiFi</div>
 
-      <div class="wifi-info">
-        <div class="wifi-row">
-          <span class="wifi-row-label">Nom du réseau</span>
-          <!-- ✏️ MODIFIER : changer le nom du WiFi ici -->
-          <span class="wifi-row-value" id="wifiName">MON_WIFI</span>
-        </div>
-        <div class="wifi-divider"></div>
-        <div class="wifi-row">
-          <span class="wifi-row-label">Mot de passe</span>
-          <!-- ✏️ MODIFIER : changer le mot de passe ici -->
-          <span class="wifi-row-value" id="wifiPassword">52hsvqxvdmqh574fq4bdz9</span>
-        </div>
-      </div>
+<div class="wifi-info">
 
-      <button class="btn-copy" id="copyBtn" onclick="copyPassword()">
-        <span id="copyIcon">📋</span>
-        <span id="copyText">Copier le mot de passe</span>
-      </button>
-    </div>
-  </div>
+<div class="wifi-row">
+<span class="wifi-row-label">Nom du réseau</span>
+<span class="wifi-row-value" id="wifiName"></span>
+</div>
+
+<div class="wifi-row">
+<span class="wifi-row-label">Mot de passe</span>
+<span class="wifi-row-value" id="wifiPassword"></span>
+</div>
+
+</div>
+
+<button class="btn-copy" onclick="copyPassword()">📋 Copier le mot de passe</button>
+
+</div>
+</div>
 
 
-  <script>
-    /* ════════════════════════════════
-       ✏️ CONFIGURATION — MODIFIER ICI
-    ════════════════════════════════ */
-    const CONFIG = {
-      // Nom du réseau WiFi
-      wifiName: "MON_WIFI",
+<!-- MENU LANGUE -->
 
-      // Mot de passe WiFi
-      wifiPassword: "52hsvqxvdmqh574fq4bdz9",
+<div class="modal-overlay" id="menuModal" onclick="closeOnOverlay(event,'menuModal')">
+<div class="modal">
 
-      // Lien vers votre menu (PDF hébergé ou URL d'une page)
-      // Exemples :
-      //   PDF Google Drive : "https://drive.google.com/file/d/VOTRE_ID/view"
-      //   PDF GitHub       : "https://votreuser.github.io/menu.pdf"
-      //   Page externe     : "https://votresite.com/menu"
-      menuUrl: "https://drive.google.com/drive/folders/1twTN0iLltZAn_ZQuxfX8cZVp-ADzB683?usp=sharing"
-    };
-    /* ════════════════════════════════ */
+<div class="modal-title">🍽 Choisissez votre langue</div>
 
-    // Injection dynamique depuis CONFIG
-    document.getElementById('wifiName').textContent     = CONFIG.wifiName;
-    document.getElementById('wifiPassword').textContent = CONFIG.wifiPassword;
+<button class="btn-lang lang-fr" onclick="openMenuFr()">
+🇫🇷 Menu Français
+</button>
 
-    // ── Ouvrir / fermer modals ──
-    function openModal(id) {
-      document.getElementById(id).classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function closeOnOverlay(e, id) {
-      if (e.target === document.getElementById(id)) closeModal(id);
-    }
+<button class="btn-lang lang-en" onclick="openMenuEn()">
+🇬🇧 English Menu
+</button>
 
-    function openWifi() { openModal('wifiModal'); }
+</div>
+</div>
 
-    function openMenu() {
-      window.location.href = CONFIG.menuUrl;
-    }
 
-    // ── Copier le mot de passe ──
-    function copyPassword() {
-      const pwd = CONFIG.wifiPassword;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(pwd).then(showCopied);
-      } else {
-        // Fallback pour anciens navigateurs
-        const el = document.createElement('textarea');
-        el.value = pwd;
-        el.style.position = 'fixed'; el.style.opacity = '0';
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        showCopied();
-      }
-    }
+<script>
 
-    function showCopied() {
-      const btn  = document.getElementById('copyBtn');
-      const icon = document.getElementById('copyIcon');
-      const txt  = document.getElementById('copyText');
-      btn.classList.add('copied');
-      icon.textContent = '✅';
-      txt.textContent  = 'Copié !';
-      setTimeout(() => {
-        btn.classList.remove('copied');
-        icon.textContent = '📋';
-        txt.textContent  = 'Copier le mot de passe';
-      }, 2200);
-    }
+const CONFIG={
+wifiName:"MON_WIFI",
+wifiPassword:"52hsvqxvdmqh574fq4bdz9",
 
-    // Fermer la modal avec la touche Échap
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        closeModal('wifiModal');
-      }
-    });
-  </script>
+menuFr:"carte_fr",
+menuEn:"carte_en"
+};
+
+document.getElementById("wifiName").textContent=CONFIG.wifiName;
+document.getElementById("wifiPassword").textContent=CONFIG.wifiPassword;
+
+function openModal(id){
+document.getElementById(id).classList.add("open");
+}
+
+function closeModal(id){
+document.getElementById(id).classList.remove("open");
+}
+
+function closeOnOverlay(e,id){
+if(e.target===document.getElementById(id))closeModal(id);
+}
+
+function openWifi(){
+openModal("wifiModal");
+}
+
+function openMenuFr(){
+window.location.href=CONFIG.menuFr;
+}
+
+function openMenuEn(){
+window.location.href=CONFIG.menuEn;
+}
+
+function copyPassword(){
+navigator.clipboard.writeText(CONFIG.wifiPassword);
+alert("Mot de passe copié !");
+}
+
+</script>
 
 </body>
 </html>
